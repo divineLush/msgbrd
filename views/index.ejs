@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <% posts.forEach(function(post){ %>
+        <div><%= post.title %></div>
+        <div><%= post.post %></div>
+      <% }); %>
+    </div>
+  </body>
+</html>
