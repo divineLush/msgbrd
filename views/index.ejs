@@ -6,10 +6,13 @@
   </head>
   <body>
     <div>
-      <% posts.forEach(function(post){ %>
-        <div><%= post.title %></div>
-        <div><%= post.post %></div>
-      <% }); %>
+      <a href="/new">new post</a>
+      <div>
+        <% posts.forEach(function(post){ %>
+          <div><%= post.title %></div>
+          <div><%= post.post %></div>
+        <% }); %>
+      </div>
     </div>
   </body>
 </html>

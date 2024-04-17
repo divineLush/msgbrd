@@ -1,8 +1,20 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Helvetica, Arial, sans-serif;
+  background: #eff1f5;
+  color: #4c4f69;
 }
 
 a {
-  color: #00B7FF;
+  color: #1e66f5;
+}
+
+a:visited {
+  color: #7287fd;
+}
+
+input,
+textarea {
+  display: block;
+  background: #dce0e8;
 }

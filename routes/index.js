@@ -1,8 +1,8 @@
-var express = require('express');
+const express = require('express');
 const db = require('../utils/db');
-var router = express.Router();
+const router = express.Router();
 
-router.get('/', async function(req, res, next) {
+router.get('/', async (req, res, next) => {
   const posts = await (await db).collection('posts').find({}).toArray();
 
   res.render('index', { title: 'msgbrd', posts: posts });

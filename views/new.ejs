@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div>
+      <h1>NEW POST</h1>
+      <form method="POST" action="/new">
+        <label for="title">TITLE</label>
+        <input type="text" name="title" id="title">
+        <label for="post">POST</label>
+        <textarea rows="3" cols="25" name="post" id="post"></textarea>
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+  </body>
+</html>
