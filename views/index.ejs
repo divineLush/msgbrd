@@ -5,14 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <div>
+    <main>
+      <h1>MSGBRD</h1>
       <a href="/new">new post</a>
-      <div>
+      <div class="mt-2">
         <% posts.forEach(function(post){ %>
-          <div><%= post.title %></div>
-          <div><%= post.post %></div>
+          <div class="post mt-1">
+            <h4><%= post.title %></h4>
+            <span class="mt-1"><%= post.date %></span>
+            <p class="mt-1"><%= post.post %></p>
+          </div>
         <% }); %>
       </div>
-    </div>
+    </main>
   </body>
 </html>

@@ -5,6 +5,11 @@ body {
   color: #4c4f69;
 }
 
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 a {
   color: #1e66f5;
 }
@@ -13,8 +18,37 @@ a:visited {
   color: #7287fd;
 }
 
+h4, p {
+  margin: 0;
+}
+
 input,
 textarea {
   display: block;
   background: #dce0e8;
+}
+
+label {
+  display: block;
+}
+
+button {
+  padding: 8px 16px;
+  background: #209fb5;
+  color: #eff1f5;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mt-1 {
+  margin-top: 4px;
+}
+
+.mt-2 {
+  margin-top: 8px;
+}
+
+.post {
+  padding: 8px 16px;
+  background: #ccd0da;
 }

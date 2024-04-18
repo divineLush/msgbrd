@@ -6,8 +6,9 @@ router.get('/new', (req, res, next) => {
   res.render('new', { title: 'msgbrd' });
 });
 
-router.post('/new', (req, res, next) => {
-  console.log(req.body);
+router.post('/new', async (req, res, next) => {
+  const date = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`;
+  await (await db).collection('posts').insertMany([{ title: req.body.title, post: req.body.post, date }]);
 
   res.redirect('/');
 });

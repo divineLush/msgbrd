@@ -5,15 +5,15 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <div>
+    <main>
       <h1>NEW POST</h1>
       <form method="POST" action="/new">
         <label for="title">TITLE</label>
-        <input type="text" name="title" id="title">
-        <label for="post">POST</label>
-        <textarea rows="3" cols="25" name="post" id="post"></textarea>
-        <button type="submit">SUBMIT</button>
+        <input class="mt-1" type="text" name="title" id="title" required>
+        <label class="mt-2"for="post">POST</label>
+        <textarea class="mt-1" rows="3" cols="25" name="post" id="post" required></textarea>
+        <button class="mt-2" type="submit">SUBMIT</button>
       </form>
-    </div>
+    </main>
   </body>
 </html>
