@@ -7,7 +7,11 @@
   <body>
     <main>
       <h1>MSGBRD</h1>
-      <a href="/new">new post</a>
+      <nav>
+        <a href="/new">new post</a>
+        <a class="ml-1" href="/signin">sign in</a>
+        <a class="ml-1" href="/signup">sign up</a>
+      </nav>
       <div class="mt-2">
         <% posts.forEach(function(post){ %>
           <div class="post mt-1">

@@ -7,10 +7,13 @@ router.get('/new', (req, res, next) => {
 });
 
 router.post('/new', async (req, res, next) => {
-  const date = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`;
-  await (await db).collection('posts').insertMany([{ title: req.body.title, post: req.body.post, date }]);
-
-  res.redirect('/');
+  try {
+    const date = `${new Date().getDay()}/${new Date().getMonth()}/${new Date().getFullYear()}`;
+    await (await db).collection('posts').insertMany([{ title: req.body.title, post: req.body.post, date }]);
+    res.redirect('/');
+  } catch(err) {
+    next(err);
+  }
 });
 
 module.exports = router;

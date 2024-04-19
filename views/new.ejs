@@ -7,10 +7,14 @@
   <body>
     <main>
       <h1>NEW POST</h1>
-      <a href="/">back home</a>
+      <nav>
+        <a href="/">back home</a>
+        <a class="ml-1" href="/signin">sign in</a>
+        <a class="ml-1" href="/signup">sign up</a>
+      </nav>
       <form class="mt-2" method="POST" action="/new">
         <label for="title">TITLE</label>
-        <input class="mt-1" type="text" name="title" id="title" required>
+        <input class="mt-1" type="text" name="title" id="title" required autofocus>
         <label class="mt-2"for="post">POST</label>
         <textarea class="mt-1" rows="3" cols="25" name="post" id="post" required></textarea>
         <button class="mt-2" type="submit">SUBMIT</button>
