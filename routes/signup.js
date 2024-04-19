@@ -8,8 +8,8 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const { name, pswd } = req.body;
-    await (await db).collection('users').insertMany([{ name, pswd }]);
+    const { username, password } = req.body;
+    await (await db).collection('users').insertMany([{ username, password }]);
     res.redirect('/');
   } catch(err) {
     next(err);
