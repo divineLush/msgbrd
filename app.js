@@ -3,7 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const session = require("express-session");
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 const indexRouter = require('./routes/index');
 const newRouter = require('./routes/new');
@@ -11,12 +12,10 @@ const signinRouter = require('./routes/signin');
 const signupRouter = require('./routes/signup');
 
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
 const db = require('./utils/db');
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -31,9 +30,6 @@ app.use(newRouter);
 app.use(signinRouter);
 app.use(signupRouter);
 
-app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
-app.use(passport.session());
-
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -46,25 +42,20 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    try {
-      const user = (await (await db).collection('users').find({ username, password }).toArray()).shift();
-      console.log(username, password, user);
+const jwtFromRequest = (req) =>
+  req && req.cookies ? req.cookies['jwt'] : null;
 
-      if (!user) {
-        return done(null, false, { message: "Incorrect username" });
-      };
+const opts = {
+  jwtFromRequest,
+  secretOrKey: 'secret',
+};
 
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      };
+passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
+    console.log(jwt_payload);
+    const user = (await (await db).collection('users').find({ _id: jwt_payload.id }).toArray()).shift();
+    done(null, user || null);
+}));
 
-      return done(null, user);
-    } catch(err) {
-      return done(err);
-    };
-  })
-);
+app.use(passport.initialize());
 
 module.exports = app;
