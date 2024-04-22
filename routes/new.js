@@ -4,7 +4,7 @@ const router = express.Router();
 const passport = require('passport');
 
 router.get('/new', (req, res, next) => {
-  res.render('new', { title: 'msgbrd' });
+  res.render('new');
 });
 
 router.post('/new', passport.authenticate('jwt', { session: false }), async (req, res, next) => {

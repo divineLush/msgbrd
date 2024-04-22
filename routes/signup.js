@@ -4,7 +4,7 @@ const db = require('../utils/db');
 const bcrypt = require('bcrypt');
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup', { title: 'msgbrd' });
+  res.render('signup');
 });
 
 router.post('/signup', async (req, res, next) => {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>MSGBRD</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -12,6 +12,11 @@
         <a class="ml-1" href="/signin">sign in</a>
         <a class="ml-1" href="/signup">sign up</a>
       </nav>
+      <% if (user) { %>
+        <h4 class="mt-1"><%= user.username %></h4>
+      <% } else { %>
+        <h4 class="mt-1">YOU ARE NOT LOGGED IN</h4>
+      <% } %>
       <div class="mt-2">
         <% posts.forEach(function(post){ %>
           <div class="post mt-1">
