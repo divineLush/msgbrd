@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const { ObjectId } = require('mongodb');
 
 const indexRouter = require('./routes/index');
 const newRouter = require('./routes/new');
@@ -51,9 +52,9 @@ const opts = {
 };
 
 passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
-    console.log(jwt_payload);
-    const user = (await (await db).collection('users').find({ _id: jwt_payload.id }).toArray()).shift();
-    done(null, user || null);
+    const _id = new ObjectId(jwt_payload._id);
+    const user = (await (await db).collection('users').find({ _id }).toArray()).shift();
+    done(null, user || false);
 }));
 
 app.use(passport.initialize());
