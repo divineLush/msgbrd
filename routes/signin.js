@@ -32,7 +32,7 @@ router.post('/signin', async (req, res, nex) => {
   );
 
   const posts = await (await db).collection('posts').find({}).toArray();
-  res.cookie('jwt', token);
+  res.cookie('jwt', token, { httpOnly: true });
   res.render('index', { title: 'msgbrd', posts, token });
 });
 
