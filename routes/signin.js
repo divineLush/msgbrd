@@ -3,6 +3,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const db = require('../utils/db');
 
+require('dotenv').config();
+
 router.get('/signin', (req, res, next) => {
   res.render('signin', { title: 'msgbrd' });
 });
@@ -21,7 +23,7 @@ router.post('/signin', async (req, res, nex) => {
 
   const token = jwt.sign(
     user,
-    'secret',
+    process.env.JWT_SECRET,
     {
       expiresIn: "1h",
     }

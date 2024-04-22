@@ -48,7 +48,7 @@ const jwtFromRequest = (req) =>
 
 const opts = {
   jwtFromRequest,
-  secretOrKey: 'secret',
+  secretOrKey: process.env.JWT_SECRET,
 };
 
 passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
