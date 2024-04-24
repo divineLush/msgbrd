@@ -20,12 +20,12 @@ router.post('/signin', async (req, res, nex) => {
 
   const user = (await (await db).collection('users').find({ username }).toArray()).shift();
   if (!user) {
-    return res.status(400).json({ message: 'Invalid username or password' });
+    return res.status(400).render('error', { message: 'Invalid username or password' });
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    return res.status(400).json({ message: 'Invalid username or password' });
+    return res.status(400).render('error', { message: 'Invalid username or password' });
   }
 
   const token = jwt.sign(
