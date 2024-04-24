@@ -2,9 +2,11 @@ const express = require('express');
 const db = require('../utils/db');
 const router = express.Router();
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 router.get('/new', (req, res, next) => {
-  res.render('new');
+  const user = jwt.decode(req.cookies.jwt);
+  res.render('new', { user });
 });
 
 router.post('/new', passport.authenticate('jwt', { session: false }), async (req, res, next) => {

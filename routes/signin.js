@@ -7,7 +7,12 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 router.get('/signin', (req, res, next) => {
-  res.render('signin');
+  const user = jwt.decode(req.cookies.jwt);
+  if (user) {
+    res.redirect('/');
+  } else {
+    res.render('signin');
+  }
 });
 
 router.post('/signin', async (req, res, nex) => {
@@ -32,7 +37,7 @@ router.post('/signin', async (req, res, nex) => {
   );
 
   const posts = await (await db).collection('posts').find({}).toArray();
-  res.cookie('jwt', token, { httpOnly: true });
+  res.cookie('jwt', token);
   res.render('index', { posts, token });
 });
 

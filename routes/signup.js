@@ -2,9 +2,15 @@ const express = require('express');
 const router = express.Router();
 const db = require('../utils/db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.get('/signup', (req, res, next) => {
-  res.render('signup');
+  const user = jwt.decode(req.cookies.jwt);
+  if (user) {
+    res.redirect('/');
+  } else {
+    res.render('signup');
+  }
 });
 
 router.post('/signup', async (req, res, next) => {

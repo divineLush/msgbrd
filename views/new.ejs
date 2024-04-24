@@ -5,13 +5,24 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <header>
+      <h1>MSGBRD</h1>
+      <div>
+        <% if (user) { %>
+          <h4 class="username"><%= user.username %></h4>
+        <% } %>
+        <nav>
+          <a href="/">back home</a>
+          <% if (user) { %>
+            <a class="ml-1" href="/signout">sign out</a>
+          <% } else { %>
+            <a class="ml-1" href="/signin">sign in</a>
+            <a class="ml-1" href="/signup">sign up</a>
+          <% } %>
+        </nav>
+      </div>
+    </header>
     <main>
-      <h1>NEW POST</h1>
-      <nav>
-        <a href="/">back home</a>
-        <a class="ml-1" href="/signin">sign in</a>
-        <a class="ml-1" href="/signup">sign up</a>
-      </nav>
       <form class="mt-2" method="POST" action="/new">
         <label for="title">TITLE</label>
         <input class="mt-1" type="text" name="title" id="title" required autofocus>
