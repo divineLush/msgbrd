@@ -12,8 +12,8 @@
           <h4 class="username"><%= user.username %></h4>
         <% } %>
         <nav>
-          <a href="/new">new post</a>
           <% if (user) { %>
+            <a href="/new">new post</a>
             <a class="ml-1" href="/signout">sign out</a>
           <% } else { %>
             <a class="ml-1" href="/signin">sign in</a>
@@ -28,6 +28,9 @@
           <div class="post mt-1">
             <h4><%= post.title %></h4>
             <span class="mt-1"><%= post.date %></span>
+            <% if (user) { %>
+              <span class="mt-1">by: <%= post.user.username %></span>
+            <% } %>
             <p class="mt-1"><%= post.post %></p>
           </div>
         <% }); %>
