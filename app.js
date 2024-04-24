@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const newRouter = require('./routes/new');
 const signinRouter = require('./routes/signin');
 const signupRouter = require('./routes/signup');
+const signoutRouter = require('./routes/signout');
 
 const passport = require('passport');
 const db = require('./utils/db');
@@ -30,6 +31,7 @@ app.use(indexRouter);
 app.use(newRouter);
 app.use(signinRouter);
 app.use(signupRouter);
+app.use(signoutRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
